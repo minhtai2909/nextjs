@@ -1,9 +1,23 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
+  const router = useRouter();
+
+  function goToDetailPage() {
+    router.push({
+      pathname: '/posts/[postId]',
+      query: {
+        postId: 123,
+        ref: 'social'
+      }
+    })
+  }
+
   return (
     <div className={styles.container}>
       <Head>
@@ -14,8 +28,18 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          Tài đẹp trai
         </h1>
+
+        <Link href="/about">
+          <a> go to about</a>
+        </Link>
+
+        <Link href="/posts">
+          <a> go to posts</a>
+        </Link>
+
+        <button onClick={goToDetailPage}>Go to post detail page</button>
 
         <p className={styles.description}>
           Get started by editing{' '}
