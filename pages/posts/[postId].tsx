@@ -54,6 +54,7 @@ export const getStaticProps: GetStaticProps<PostDetailProps> =
             props: {
                 posts: [],
                 post: res
-            }
+            },
+            revalidate: 5
         }
     }

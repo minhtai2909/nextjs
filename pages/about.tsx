@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 //import Header from "@/components/common/header";
 
 import dynamic from "next/dynamic";
+import { MainLayout } from "@/components/layout";
 const Header = dynamic(() => import("@/components/common/header"), { ssr: false });
 export interface AboutPageProps {
 
@@ -33,20 +34,25 @@ export default function AboutPage(props: AboutPageProps) {
             setLstPost(res);
         })()
     }, [])
-    return (<>
-        <h1>About</h1>
-        <ul className="lstPost">
-            {
-                lstPost.map((post: any) => (
-                    <li key={post.id}>{post.title}</li>)
-                )
-            }
-        </ul>
-        <Header />
 
-        <button onClick={handleNextButton}>next clik</button>
+    return (<>
+        <div>
+            <h1>About</h1>
+            <ul className="lstPost">
+                {
+                    lstPost.map((post: any) => (
+                        <li key={post.id}>{post.title}</li>)
+                    )
+                }
+            </ul>
+            <Header />
+
+            <button onClick={handleNextButton}>next clik</button>
+        </div>
     </>)
 }
+
+AboutPage.Layout = MainLayout
 
 export async function getStaticProps() {
     console.log("get static props")
