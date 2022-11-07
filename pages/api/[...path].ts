@@ -17,16 +17,16 @@ export default function handler(
     req: NextApiRequest,
     res: NextApiResponse<Data>
 ) {
-    req.headers.cookie = '';
+    return new Promise((resolve) => {
+        // don't send cookie to API server
+        req.headers.cookie = '';
+        proxy.web(req, res, {
+            target: process.env.API_URL,
+            changeOrigin: true,
+            selfHandleResponse: false,
+        })
 
-    proxy.web(req, res, {
-        target: process.env.API_URL,
-        // target: 'https://jsonplaceholder.typicode.com',
-        changeOrigin: true,
-        selfHandleResponse: false,
-
+        proxy.once("proxyRes", () => resolve(true))
     })
-
-
     // res.status(200).json({ name: 'Catch all  paths of xxxxxxx' })
 }
