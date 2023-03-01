@@ -9,12 +9,14 @@
     "BS": "yarn run build -and yarn run start"
   },
   "dependencies": {
+    "cookies": "^0.8.0",
     "http-proxy": "^1.18.1",
     "next": "12.0.7",
     "react": "17.0.2",
     "react-dom": "17.0.2"
   },
   "devDependencies": {
+    "@types/cookies": "^0.7.7",
     "@types/http-proxy": "^1.17.9",
     "@types/node": "16.11.12",
     "@types/react": "17.0.37",
